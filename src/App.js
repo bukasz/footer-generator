@@ -1,15 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './App.css';
-import Header from './Header';
-import DropdownMenu from './DropdownMenu';
-import FormGenerator from './FormGenerator';
+import FooterGenerator from './FooterGenerator';
 
 function App() {
   return (
     <div className="App">
-      <Header />
-      <DropdownMenu />
-      <FormGenerator />
+      <FooterGenerator />
     </div>
   );
 }

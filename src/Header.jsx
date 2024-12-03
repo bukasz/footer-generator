@@ -1,19 +1,22 @@
 import React from "react";
+import Title from "./Title";
+import DropdownMenu from './DropdownMenu';
 
 
 export default function Header() {
   return (
-    <div>
-      <h2 style={title}>Hello, CyberSailor!</h2>
-      <h4>Generate your footer:</h4>
-    </div>
+    <header style={header}>
+      <Title />
+      <DropdownMenu />
+    </header>
   )
 }
 
-
-const title = {
-  fontFamily: 'Roboto Condensed',
-  fontWeight: 'bold',
-  color: 'red',
-  backgroundImage: `(url'/svgs/brush.svg')`,
+const header = {
+position: "relative",
+display: "flex",
+width: "100% + 2rem",
+flexDirection: "row",
+justifyContent: "space-between",
 }
+
