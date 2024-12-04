@@ -43,6 +43,7 @@ right: "-1rem",
 }
 
 const button = {
+  padding: "0.5rem",
   display: "inline-flex",
   flexDirection: "column",
   alignItems: "center",
@@ -55,7 +56,7 @@ const button = {
 
 const bar = {
 position: "absolute",
-height: "0.2rem",
+height: "0.15rem",
 left: 0,
 right: 0,
 background: "#fff",
@@ -63,29 +64,32 @@ transition: "top 0.2s",
 };
 
 const bar1 = {
-top: "0.9rem",
+top: "0.3125rem",
 };
 
 const bar2 = {
-top: "1.3rem",
+top: "0.5625rem",
 };
 
 const bar3 = {
-top: "1.7rem",
+top: "0.8125rem",
 };
 
 const barsContainer = {
 position: "relative",
-height: "1.5rem",
-width: "2.5rem",
+height: "1.25rem",
+width: "1.25rem",
 };
 
 
 const menuText = {
 fontFamily: "Roboto Condensed",
-fontSize: '1rem',
-opacity: 1,
+fontWeight: "bold",
+letterSpacing: "0.175rem",
+fontSize: '0.9375rem',
+opacity: "1",
 color: '#fff',
+margin: '0',
 };
 
 
