@@ -1,22 +1,15 @@
 import React from "react";
 import Title from "./Title";
 import DropdownMenu from './DropdownMenu';
+import styles from './../styles/components/_header.module.scss';
 
 
 export default function Header() {
   return (
-    <header style={header}>
+    <header className={styles.header}>
       <Title />
       <DropdownMenu />
     </header>
   )
-}
-
-const header = {
-position: "relative",
-display: "flex",
-width: "100% + 2rem",
-flexDirection: "row",
-justifyContent: "space-between",
 }
 

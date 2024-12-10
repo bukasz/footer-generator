@@ -1,10 +1,10 @@
 import React from 'react';
-import './App.css';
 import FooterGenerator from './FooterGenerator';
+import './../styles/components/App.scss';
 
 function App() {
   return (
-    <div className="App">
+    <div className='App'>
       <FooterGenerator />
     </div>
   );

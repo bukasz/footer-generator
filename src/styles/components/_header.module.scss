@@ -1,0 +1,13 @@
+@import '_base.scss';
+
+.header {
+    position: relative;
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+
+    @media screen and (max-width: 480px) {
+
+    };
+}

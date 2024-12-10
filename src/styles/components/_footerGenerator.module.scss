@@ -1,0 +1,107 @@
+  @use '_base';
+  @use '_button.module';
+
+  .footergenerator {
+    padding: 1rem;
+    background-color: base.$background;
+
+    @media screen and (max-width: 480px) {
+      width: calc(100% - 4rem);
+      margin: 2rem 1rem;
+    }
+
+    width: 50%;
+    margin: 2rem;
+
+    .form__row {
+      width: 100%;
+      max-width: 34rem;
+      display: flex;
+      align-items: flex-end;
+      padding: 0.25rem 0;
+      flex-wrap: wrap;
+
+      @media screen and (max-width: 1024px) {
+        flex-direction: column;
+        width: calc(100% - 1rem);
+        align-items: flex-start;
+      }
+
+      &--withbuttons {
+        justify-content: flex-end;
+
+        @media screen and (max-width: 1024px) {
+          flex-direction: row;
+        }
+      }
+
+      .form__element {
+        width: 14rem;
+        height: 1.5rem;
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid base.$greylight;
+        margin: 0.5rem 0.5rem 0 0.5rem;
+        font-family: base.$main-font;
+        letter-spacing: 0;
+        color: base.$grey;
+
+        @media screen and (max-width: 1024px) {
+          width: 100%;
+          margin: 0.5rem 0;
+        }
+
+        &::placeholder {
+          color: base.$grey;
+          font-size: 13px;
+        }
+
+        &:focus {
+          outline-width: 0;
+          border-bottom: 1px solid base.$grey;
+        }
+
+        &--withlabel {
+          display: flex;
+          align-items: flex-end;
+          color: base.$grey;
+          font-size: 13px;
+
+          @media screen and (max-width: 1024px) {
+            align-items: center;
+            width: 100%;
+            margin-left: 0;
+          }
+
+          label {
+            width: 0.5rem;
+          }
+        }
+      }
+    }
+
+    .textarea {
+      width: 100%;
+      max-width: 34rem;
+      rows: '5';
+      height: 5rem;
+      padding: 0.5rem;
+      background: transparent;
+      border: 1px solid base.$greylight;
+      font-family: base.$main-font;
+      letter-spacing: 0;
+      color: base.$grey;
+      margin: 1rem 0.5rem 1rem 0.5rem;
+      resize: none;
+
+      &:focus {
+        outline-width: 0;
+        border: 1px solid base.$grey;
+      }
+
+      @media screen and (max-width: 1024px) {
+        margin: 1rem 0;
+        width: calc(100% - 1rem);
+      }
+    }
+  }
