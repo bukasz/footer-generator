@@ -1,11 +1,13 @@
 @use '_base';
 
+// class names should be kebab-case, so: dropdown-menu
 .dropDownMenu {
     position: relative;
     top: -1rem;
     right: -1rem;
 }
 
+// I'd name it dropdown-menu__button (Block: dropdown-menu, Element: button)
 .button {
     padding: 0.5rem;
     display: inline-flex;
@@ -27,6 +29,7 @@
     transition: top 0.2s;
 }
 
+// I'd name it dropdown-menu__bar1 (Block: dropdown-menu, Element: bar)
 .bar1 {
     @extend %bar;
     top: 0.3125rem;

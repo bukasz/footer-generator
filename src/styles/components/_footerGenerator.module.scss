@@ -1,6 +1,7 @@
   @use '_base';
   @use '_button.module';
 
+  // I'd name it footer-generator
   .footergenerator {
     padding: 1rem;
     background-color: base.$background;
@@ -13,6 +14,8 @@
     width: 50%;
     margin: 2rem;
 
+    // .footer-generator__form-row
+    // or even better (with nesting) &__form-row
     .form__row {
       width: 100%;
       max-width: 34rem;
@@ -21,12 +24,15 @@
       padding: 0.25rem 0;
       flex-wrap: wrap;
 
+      // Please change the responsive design to be mobile-first
+      // Please remove the 'screen and' part as it is not needed in our case (we handle every device the same way)
       @media screen and (max-width: 1024px) {
         flex-direction: column;
         width: calc(100% - 1rem);
         align-items: flex-start;
       }
 
+      // &--with-buttons {
       &--withbuttons {
         justify-content: flex-end;
 
@@ -35,6 +41,7 @@
         }
       }
 
+      // .footer-generator__form-element {
       .form__element {
         width: 14rem;
         height: 1.5rem;
@@ -83,7 +90,7 @@
     .textarea {
       width: 100%;
       max-width: 34rem;
-      rows: '5';
+      rows: '5'; //it should be an HTML attribute
       height: 5rem;
       padding: 0.5rem;
       background: transparent;

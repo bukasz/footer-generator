@@ -1,5 +1,6 @@
 @use '_base';
 
+// check your automatic formatter
 %button {
     box-sizing: border-box;
     display: inline-flex;
@@ -21,6 +22,7 @@
     }
   }
 
+  // stick to BEM naming convention (double __ between block and element)
   .button_submit {
     @extend %button;
     background-color: base.$creativered;
