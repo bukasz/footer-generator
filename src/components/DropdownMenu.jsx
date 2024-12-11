@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import styles from './../styles/components/_dropdownMenu.module.scss';
-
 
 export default function DropdownMenu() {
 
@@ -20,16 +18,16 @@ export default function DropdownMenu() {
   
 
   return (
-    <div className={styles.dropDownMenu} onMouseLeave={handleMouseLeave}>
-      <button className={styles.button} onClick={toggleDropdown}> 
-      <span className={styles.barsContainer}>
-                <span className={styles.bar1}></span>
-                <span className={styles.bar2}></span>
-                <span className={styles.bar3}></span>
+    <div className="dropDownMenu" onMouseLeave={handleMouseLeave}>
+      <button className="button" onClick={toggleDropdown}> 
+      <span className="barsContainer">
+                <span className="bar1"></span>
+                <span className="bar2"></span>
+                <span className="bar3"></span>
             </span>
-        <p className={styles.menuText}>MENU</p>
+        <p className="menuText">MENU</p>
         </button>
-      <div className={styles.dropdownContent} style={dynamicOpen}>
+      <div className="dropdownContent" style={dynamicOpen}>
         <a href="#">Sign out</a>
         <a href="#">Refresh token</a>
         <a href="#">Revoke Gmail Access</a>

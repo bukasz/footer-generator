@@ -1,5 +1,5 @@
-  @use '_base';
-  @use '_button.module';
+  @use 'base';
+  @use 'button';
 
   // I'd name it footer-generator
   .footergenerator {

@@ -1,8 +1,6 @@
 import React, { useState, useRef, useForm } from 'react';
 import Header from './Header';
 import FooterPreview from './FooterPreview';
-import styles from './../styles/components/_footerGenerator.module.scss';
-
 
 const FooterGenerator = () => {
 
@@ -41,20 +39,20 @@ const FooterGenerator = () => {
   };
 
   return (
-    <div>
-      <div className={styles.footergenerator}>
+    <>
+      <div className="footergenerator">
 
         <Header />
 
-        <form className={styles.form} onChange={handleChange}>
-          <div className={styles.form__row}>
+        <form className="form" onChange={handleChange}>
+          <div className="form__row">
             <input
               type="text"
               id="name"
               name="name"
               value={formData.name}
               placeholder="Name"
-              className={styles.form__element}
+              className="form__element"
             />
             <input
               type="text"
@@ -62,25 +60,25 @@ const FooterGenerator = () => {
               name="surname"
               value={formData.surname}
               placeholder="Surname"
-              className={styles.form__element}
+              className="form__element"
             />
           </div>
-          <div className={styles.form__row} >
+          <div className="form__row" >
             <input
               type="number"
               id="telephone"
               name="telephone"
               value={formData.telephone}
               placeholder="Telephone"
-              className={styles.form__element}
+              className="form__element"
             />
           </div>
-          <div className={styles.form__row}>
+          <div className="form__row">
             <select
               id="position"
               name="position"
               value={formData.position}
-              className={styles.form__element}
+              className="form__element"
             >
               <option value="Position">Position</option>
               <option value="Software Quality Assurance Engineer">Software Quality Assurance Engineer</option>
@@ -89,7 +87,7 @@ const FooterGenerator = () => {
               <option value="Leading Web Developer">Leading Web Developer</option>
             </select>
 
-            <div className={styles['form__element--withlabel']}>
+            <div className="form__element--withlabel">
               <label for="position_alt">or</label>
               <input
                 type="text"
@@ -97,25 +95,25 @@ const FooterGenerator = () => {
                 name="position_alt"
                 value={formData.position_alt}
                 onChange={toggleSource}
-                className={styles.form__element}
+                className="form__element"
               />
             </div>
           </div>
 
-        <div className={styles.form__row}>
+        <div className="form__row">
           <textarea
             id="more"
             name="more"
             placeholder={"Something more about you?"}
-            className={styles.textarea}
+            className="textarea"
           ></textarea>
         </div>
-        <div className={`${styles['form__row']} ${styles['form__row--withbuttons']}`}>
-          <button type="reset" value="Reset" onclick={clearForm} className={styles.button_clear} >
-            <span className={styles.button__text} >Clear</span>
+        <div className="form__row form__row--withbuttons">
+          <button type="reset" value="Reset" onclick={clearForm} className="button_clear">
+            <span className="button__text">Clear</span>
           </button>
-          <button type="submit" value="Submit" className={styles.button_submit} >
-            <span className={styles.button__text}>Submit</span>
+          <button type="submit" value="Submit" className="button_submit" >
+            <span className="button__text">Submit</span>
           </button>
         </div>
         </form>
@@ -129,7 +127,7 @@ const FooterGenerator = () => {
         more={formData.more}
       />
 
-    </div>
+    </>
   );
 };
 
