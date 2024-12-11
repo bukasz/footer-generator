@@ -1,49 +1,49 @@
-@use 'base';
+@use "base";
 
-// check your automatic formatter
 %button {
-    box-sizing: border-box;
-    display: inline-flex;
-    align-items: center;
-    vertical-align: middle;
-    padding: 0px;
-    border: none;
-    text-decoration: none;
-    user-select: none;
-    font-size: 0px;
-    outline: none;
-    border-radius: 0.25rem;
-    margin: 0.25rem 0.5rem 0.25rem 0.25rem;
-    cursor: pointer;
-    transition: transform 200ms ease;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+  padding: 0px;
+  border: none;
+  text-decoration: none;
+  user-select: none;
+  font-size: 0px;
+  outline: none;
+  border-radius: 0.25rem;
+  margin: 0.25rem 0rem 0.25rem 0.25rem;
+  cursor: pointer;
+  transition: transform 200ms ease;
 
-    &:hover {
+  &:hover {
     transform: scale(1.1);
-    }
   }
+}
 
-  // stick to BEM naming convention (double __ between block and element)
-  .button_submit {
+.button {
+  &--submit {
     @extend %button;
     background-color: base.$creativered;
 
-    @media screen and (max-width: 1024px) {
-      margin-right: 0;
+    @media screen and (min-width: 1025px) {
+      margin-right: 0.5rem;
     }
   }
 
-  .button_clear {
+  &--clear {
     @extend %button;
     background: base.$grey;
   }
+}
 
-  .button__text {
-    font-family: base.$main-font;
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: 0.8375rem;
-    letter-spacing: 0.1em;
-    white-space: nowrap;
-    color: base.$white;
-    padding: 0.675rem 0.9375rem 0.675rem 1.25rem;
-  }
+.button__text {
+  font-family: base.$main-font;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.8375rem;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+  color: base.$white;
+  padding: 0.675rem 0.9375rem 0.675rem 1.25rem;
+}

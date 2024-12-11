@@ -109,10 +109,10 @@ const FooterGenerator = () => {
           ></textarea>
         </div>
         <div className="form__row form__row--withbuttons">
-          <button type="reset" value="Reset" onClick={clearForm} className="button_clear">
+          <button type="reset" value="Reset" onClick={clearForm} className="button--clear">
             <span className="button__text">Clear</span>
           </button>
-          <button type="submit" value="Submit" className="button_submit" >
+          <button type="submit" value="Submit" className="button--submit" >
             <span className="button__text">Submit</span>
           </button>
         </div>
