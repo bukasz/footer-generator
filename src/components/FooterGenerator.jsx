@@ -46,7 +46,7 @@ const FooterGenerator = () => {
 
         <Header />
 
-        <form className={styles.form}>
+        <form className={styles.form} onChange={handleChange}>
           <div className={styles.form__row}>
             <input
               type="text"
@@ -55,7 +55,6 @@ const FooterGenerator = () => {
               value={formData.name}
               placeholder="Name"
               className={styles.form__element}
-              onChange={handleChange}
             />
             <input
               type="text"
