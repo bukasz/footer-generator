@@ -88,7 +88,7 @@ const FooterGenerator = () => {
             </select>
 
             <div className="form__element--withlabel">
-              <label for="position_alt">or</label>
+              <label htmlFor="position_alt">or</label>
               <input
                 type="text"
                 id="position_alt"
@@ -109,7 +109,7 @@ const FooterGenerator = () => {
           ></textarea>
         </div>
         <div className="form__row form__row--withbuttons">
-          <button type="reset" value="Reset" onclick={clearForm} className="button_clear">
+          <button type="reset" value="Reset" onClick={clearForm} className="button_clear">
             <span className="button__text">Clear</span>
           </button>
           <button type="submit" value="Submit" className="button_submit" >
