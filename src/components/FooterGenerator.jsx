@@ -1,4 +1,4 @@
-import React, { useState, useRef, useForm } from 'react';
+import React, { useState, useRef } from 'react';
 import Header from './Header';
 import FooterPreview from './FooterPreview';
 
@@ -8,49 +8,44 @@ const FooterGenerator = () => {
     name: "",
     surname: "",
     position: "",
+    position_alt:"",
     telephone: "",
     more: "",
   }
 
   const [formData, setFormData] = useState(initialFormData);
 
-  //Select position from two sources
-  const [useSelect, setFromSelect] = useState(true);
-  const firstChangeHandled = useRef(false);
-
-  const toggleSource = () => {
-    if (!firstChangeHandled.current) {
-      firstChangeHandled.current = true;
-      setFromSelect(!useSelect);
-    }
-  }
+  const [position_chosen, setChosenPosition] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-  };
 
-  //Default text in text area
-  const [text, setText] = useState("Something more about you?");
+    if(e.target.name == 'position' || e.target.name == 'position_alt') {
+      setChosenPosition(e.target.value);
+    }
+  };
 
   const clearForm = (e) => {
     e.preventDefault();
-    e.target.reset();
+    setFormData(initialFormData);
+    setChosenPosition("");
   };
 
   return (
     <>
-      <div className="footergenerator">
+      <div className="footer-generator">
 
         <Header />
 
-        <form className="form" onChange={handleChange}>
+        <form className="form">
           <div className="form__row">
             <input
               type="text"
               id="name"
               name="name"
               value={formData.name}
+              onChange={handleChange}
               placeholder="Name"
               className="form__element"
             />
@@ -59,6 +54,7 @@ const FooterGenerator = () => {
               id="surname"
               name="surname"
               value={formData.surname}
+              onChange={handleChange}
               placeholder="Surname"
               className="form__element"
             />
@@ -69,6 +65,7 @@ const FooterGenerator = () => {
               id="telephone"
               name="telephone"
               value={formData.telephone}
+              onChange={handleChange}
               placeholder="Telephone"
               className="form__element"
             />
@@ -78,6 +75,7 @@ const FooterGenerator = () => {
               id="position"
               name="position"
               value={formData.position}
+              onChange={handleChange}
               className="form__element"
             >
               <option value="Position">Position</option>
@@ -87,15 +85,15 @@ const FooterGenerator = () => {
               <option value="Leading Web Developer">Leading Web Developer</option>
             </select>
 
-            <div className="form__element--withlabel">
+            <div className="form__element--with-label">
               <label htmlFor="position_alt">or</label>
               <input
                 type="text"
                 id="position_alt"
                 name="position_alt"
                 value={formData.position_alt}
-                onChange={toggleSource}
-                className="form__element"
+                onChange={handleChange}
+                className='input--with-label'
               />
             </div>
           </div>
@@ -104,8 +102,11 @@ const FooterGenerator = () => {
           <textarea
             id="more"
             name="more"
+            value={formData.more}
+            onChange={handleChange}
+            rows="5"
             placeholder={"Something more about you?"}
-            className="textarea"
+            className="form__textarea"
           ></textarea>
         </div>
         <div className="form__row form__row--withbuttons">
@@ -113,7 +114,7 @@ const FooterGenerator = () => {
             <span className="button__text">Clear</span>
           </button>
           <button type="submit" value="Submit" className="button--submit" >
-            <span className="button__text">Submit</span>
+            <span className="button__text">Save</span>
           </button>
         </div>
         </form>
@@ -123,7 +124,7 @@ const FooterGenerator = () => {
         name={formData.name}
         surname={formData.surname}
         telephone={formData.telephone}
-        position={useSelect ? formData.position : formData.position_alt}
+        position={position_chosen}
         more={formData.more}
       />
 

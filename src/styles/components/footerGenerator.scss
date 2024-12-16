@@ -1,104 +1,116 @@
-  @use 'base';
-  @use 'button';
+@use "base";
+@use "button";
 
-  // I'd name it footer-generator
-  .footergenerator {
-    padding: 1rem;
-    background-color: base.$background;
+.footer-generator {
+  padding: 1rem;
+  background-color: base.$background;
+  width: calc(100% - 4rem);
+  margin: 2rem 1rem;
 
-    @media screen and (max-width: 480px) {
-      width: calc(100% - 4rem);
-      margin: 2rem 1rem;
-    }
-
-    width: 50%;
+  @media (min-width: 481px) {
+    width: 70%;
+    max-width: 700px;
     margin: 2rem;
+  }
 
-    // .footer-generator__form-row
-    // or even better (with nesting) &__form-row
-    .form__row {
+  .form {
+    width: 100%;
+
+    &__row {
       width: 100%;
-      max-width: 34rem;
+      flex-direction: column;
       display: flex;
-      align-items: flex-end;
+      align-items: flex-start;
       padding: 0.25rem 0;
       flex-wrap: wrap;
 
-      // Please change the responsive design to be mobile-first
-      // Please remove the 'screen and' part as it is not needed in our case (we handle every device the same way)
-      @media screen and (max-width: 1024px) {
-        flex-direction: column;
-        width: calc(100% - 1rem);
-        align-items: flex-start;
+      @media (min-width: 769px) {
+        flex-direction: row;
+        align-items: flex-end;
       }
 
-      // &--with-buttons {
       &--withbuttons {
-        justify-content: flex-end;
+        align-items: flex-end;
 
-        @media screen and (max-width: 1024px) {
-          flex-direction: row;
+        @media (min-width: 769px) {
+          justify-content: flex-end;
         }
       }
+    }
 
-      // .footer-generator__form-element {
-      .form__element {
-        width: 14rem;
-        height: 1.5rem;
-        background: transparent;
-        border: none;
-        border-bottom: 1px solid base.$greylight;
+    &__element {
+      box-sizing: border-box;
+      width: 100%;
+      height: 1.5rem;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid base.$greylight;
+      margin: 0.5rem 0;
+      font-family: base.$main-font;
+      letter-spacing: 0;
+      color: base.$grey;
+
+      @media (min-width: 769px) {
+        width: calc(50% - 1rem);
         margin: 0.5rem 0.5rem 0 0.5rem;
-        font-family: base.$main-font;
-        letter-spacing: 0;
+      }
+
+      &::placeholder {
         color: base.$grey;
+        font-size: 13px;
+      }
 
-        @media screen and (max-width: 1024px) {
+      &:focus {
+        outline-width: 0;
+        border-bottom: 1px solid base.$grey;
+      }
+
+      &--with-label {
+        display: flex;
+        align-items: flex-end;
+        color: base.$grey;
+        font-size: 13px;
+        width: 100%;
+        margin: 0.5rem 0rem;
+
+        @media (min-width: 769px) {
+          width: calc(50% - 1rem);
+          margin: 0.5rem 0.5rem 0 0.5rem;
+        }
+
+        label {
+          width: 0.5rem;
+          margin-right: 0.5rem;
+        }
+
+        .input--with-label {
           width: 100%;
-          margin: 0.5rem 0;
-        }
-
-        &::placeholder {
+          height: 1.5rem;
+          background: transparent;
+          border: none;
+          border-bottom: 1px solid base.$greylight;
+          font-family: base.$main-font;
+          letter-spacing: 0;
           color: base.$grey;
-          font-size: 13px;
-        }
 
-        &:focus {
-          outline-width: 0;
-          border-bottom: 1px solid base.$grey;
-        }
-
-        &--withlabel {
-          display: flex;
-          align-items: flex-end;
-          color: base.$grey;
-          font-size: 13px;
-
-          @media screen and (max-width: 1024px) {
-            align-items: center;
-            width: 100%;
-            margin-left: 0;
-          }
-
-          label {
-            width: 0.5rem;
+          &:focus {
+            outline-width: 0;
+            border-bottom: 1px solid base.$grey;
           }
         }
       }
     }
 
-    .textarea {
+    &__textarea {
+      box-sizing: border-box;
       width: 100%;
-      max-width: 34rem;
-      rows: '5'; //it should be an HTML attribute
-      height: 5rem;
       padding: 0.5rem;
       background: transparent;
       border: 1px solid base.$greylight;
       font-family: base.$main-font;
       letter-spacing: 0;
       color: base.$grey;
-      margin: 1rem 0.5rem 1rem 0.5rem;
+      margin: 1rem 0 1rem 0;
       resize: none;
 
       &:focus {
@@ -106,9 +118,10 @@
         border: 1px solid base.$grey;
       }
 
-      @media screen and (max-width: 1024px) {
-        margin: 1rem 0;
-        width: calc(100% - 1rem);
+      @media (min-width: 769px) {
+        margin: 1rem 0.5rem;
+        width: 100%;
       }
     }
   }
+}
