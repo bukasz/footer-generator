@@ -21,7 +21,7 @@
   }
 }
 
-.button {
+.form__button {
   &--submit {
     @extend %button;
     background-color: base.$creativered;
@@ -36,7 +36,7 @@
     background: base.$grey;
   }
 
-  &__text {
+  &--text {
     font-family: base.$main-font;
     font-weight: 700;
     text-transform: uppercase;

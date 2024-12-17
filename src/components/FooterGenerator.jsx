@@ -1,17 +1,16 @@
-import React, { useState, useRef } from 'react';
-import Header from './Header';
-import FooterPreview from './FooterPreview';
+import React, { useState } from "react";
+import Header from "./Header";
+import FooterPreview from "./FooterPreview";
 
 const FooterGenerator = () => {
-
   const initialFormData = {
     name: "",
     surname: "",
     position: "",
-    position_alt:"",
+    position_alt: "",
     telephone: "",
     more: "",
-  }
+  };
 
   const [formData, setFormData] = useState(initialFormData);
 
@@ -21,7 +20,7 @@ const FooterGenerator = () => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
 
-    if(e.target.name == 'position' || e.target.name == 'position_alt') {
+    if (e.target.name === "position" || e.target.name === "position_alt") {
       setChosenPosition(e.target.value);
     }
   };
@@ -35,7 +34,6 @@ const FooterGenerator = () => {
   return (
     <>
       <div className="footer-generator">
-
         <Header />
 
         <form className="form">
@@ -48,6 +46,7 @@ const FooterGenerator = () => {
               onChange={handleChange}
               placeholder="Name"
               className="form__element"
+              required
             />
             <input
               type="text"
@@ -57,9 +56,10 @@ const FooterGenerator = () => {
               onChange={handleChange}
               placeholder="Surname"
               className="form__element"
+              required
             />
           </div>
-          <div className="form__row" >
+          <div className="form__row">
             <input
               type="number"
               id="telephone"
@@ -79,10 +79,14 @@ const FooterGenerator = () => {
               className="form__element"
             >
               <option value="Position">Position</option>
-              <option value="Software Quality Assurance Engineer">Software Quality Assurance Engineer</option>
+              <option value="Software Quality Assurance Engineer">
+                Software Quality Assurance Engineer
+              </option>
               <option value="Web Developer">Web Developer</option>
               <option value="Senior Web Developer">Senior Web Developer</option>
-              <option value="Leading Web Developer">Leading Web Developer</option>
+              <option value="Leading Web Developer">
+                Leading Web Developer
+              </option>
             </select>
 
             <div className="form__element--with-label">
@@ -93,30 +97,39 @@ const FooterGenerator = () => {
                 name="position_alt"
                 value={formData.position_alt}
                 onChange={handleChange}
-                className='input--with-label'
+                className="input--with-label"
               />
             </div>
           </div>
 
-        <div className="form__row">
-          <textarea
-            id="more"
-            name="more"
-            value={formData.more}
-            onChange={handleChange}
-            rows="5"
-            placeholder={"Something more about you?"}
-            className="form__textarea"
-          ></textarea>
-        </div>
-        <div className="form__row form__row--withbuttons">
-          <button type="reset" value="Reset" onClick={clearForm} className="button--clear">
-            <span className="button__text">Clear</span>
-          </button>
-          <button type="submit" value="Submit" className="button--submit" >
-            <span className="button__text">Save</span>
-          </button>
-        </div>
+          <div className="form__row">
+            <textarea
+              id="more"
+              name="more"
+              value={formData.more}
+              onChange={handleChange}
+              rows="5"
+              placeholder={"Something more about you?"}
+              className="form__textarea"
+            ></textarea>
+          </div>
+          <div className="form__row form__row--withbuttons">
+            <button
+              type="reset"
+              value="Reset"
+              onClick={clearForm}
+              className="form__button--clear"
+            >
+              <span className="form__button--text">Clear</span>
+            </button>
+            <button
+              type="submit"
+              value="Submit"
+              className="form__button--submit"
+            >
+              <span className="form__button--text">Save</span>
+            </button>
+          </div>
         </form>
       </div>
 
@@ -127,7 +140,6 @@ const FooterGenerator = () => {
         position={position_chosen}
         more={formData.more}
       />
-
     </>
   );
 };

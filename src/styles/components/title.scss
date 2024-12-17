@@ -1,6 +1,7 @@
-@use 'base';
+@use "base";
 
 .title {
+  &__main {
     font-weight: 700;
     color: base.$white;
     margin: 0;
@@ -8,14 +9,15 @@
     position: relative;
     top: -1.5rem;
     left: -1.5rem;
-    background-image: url('./../../svgs/brush.svg');
+    background-image: url("./../../svgs/brush.svg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
   }
 
-  .subtitle {
+  &__subtitle {
     font-weight: 400;
     color: base.$grey;
     margin: 0;
   }
+}
