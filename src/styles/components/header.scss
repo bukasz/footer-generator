@@ -1,4 +1,4 @@
-@import '_base.scss';
+@import "base.scss";
 
 .header {
     position: relative;
@@ -6,8 +6,4 @@
     width: 100%;
     flex-direction: row;
     justify-content: space-between;
-
-    @media screen and (max-width: 480px) {
-
-    };
 }
