@@ -6,16 +6,12 @@ export default function DropdownMenu() {
     setIsOpen(!isOpen);
   };
 
-  const handleMouseLeave = () => {
-    setIsOpen(false);
-  };
-
   const dynamicOpen = isOpen
     ? { visibility: "visible", opacity: "1" }
     : { visibility: "hidden", opacity: "0" };
 
   return (
-    <div className="dropdown-menu" onMouseLeave={handleMouseLeave}>
+    <div className="dropdown-menu">
       <button className="dropdown-menu__button" onClick={toggleDropdown}>
         <span className="dropdown-menu__bars-container">
           <span className="dropdown-menu__bars-container--bar1"></span>
