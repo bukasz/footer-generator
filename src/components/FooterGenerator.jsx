@@ -13,9 +13,9 @@ const FooterGenerator = () => {
     more: "",
   };
 
-  const [formData, setFormData] = useState(initialFormData);
+  const [useSelect, setFromSelect] = useState(true);
 
-  const [position_chosen, setChosenPosition] = useState("");
+  const [formData, setFormData] = useState(initialFormData);
 
   return (
     <>
@@ -25,14 +25,14 @@ const FooterGenerator = () => {
           initialFormData={initialFormData}
           formData={formData}
           setFormData={setFormData}
-          setChosenPosition={setChosenPosition}
+          setFromSelect={setFromSelect}
         />
       </div>
       <FooterPreview
         name={formData.name}
         surname={formData.surname}
         telephone={formData.telephone}
-        position={position_chosen}
+        position={useSelect ? formData.position : formData.position_alt}
         more={formData.more}
       />
     </>

@@ -1,19 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 
-const Form = ({initialFormData, formData, setFormData, setChosenPosition}) => {
+const Form = ({initialFormData, formData, setFormData, setFromSelect}) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-    if (e.target.name === "position" || e.target.name === "position_alt") {
-      setChosenPosition(e.target.value);
-    }
   };
 
   const clearForm = (e) => {
     e.preventDefault();
     setFormData(initialFormData);
-    setChosenPosition("");
+    setIsDisabled(false);
+  };
+
+  const [isDisabled, setIsDisabled] = useState(false);
+
+  const handleCustomPosition = (e) => {
+    setFormData({ ...formData, position: "", position_alt: e.target.value});
+    setFromSelect(false);
+    setIsDisabled(true);
   };
 
   return (
@@ -58,6 +63,7 @@ const Form = ({initialFormData, formData, setFormData, setChosenPosition}) => {
               value={formData.position}
               onChange={handleChange}
               className="form__element"
+              disabled={isDisabled}
             >
               <option value="Position">Position</option>
               <option value="Software Quality Assurance Engineer">
@@ -77,7 +83,7 @@ const Form = ({initialFormData, formData, setFormData, setChosenPosition}) => {
                 id="position_alt"
                 name="position_alt"
                 value={formData.position_alt}
-                onChange={handleChange}
+                onChange={handleCustomPosition}
                 className="input--with-label"
               />
             </div>
