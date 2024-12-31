@@ -11,3 +11,4 @@ export default function FooterPreview({name, surname, position, telephone, more}
       </div>
     )
   }
+  
