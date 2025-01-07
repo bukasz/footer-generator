@@ -60,18 +60,21 @@
     border-radius: 0.25rem 0 0.25rem 0.25rem;
     display: flex;
     transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+  }
 
-    a {
-      color: base.$white;
-      padding: 0.3rem;
-      text-decoration: none;
-      text-align: right;
-      transition: all 300ms ease-in-out;
+  &__link {
+    color: base.$white;
+    background-color: transparent;
+    border: none;
+    padding: 0.3rem;
+    text-decoration: none;
+    text-align: right;
+    transition: all 300ms ease-in-out;
+    cursor: pointer;
 
-      &:hover {
-        transform: scale(1.02);
-        color: base.$greylight;
-      }
+    &:hover {
+      transform: scale(1.02);
+      color: base.$greylight;
     }
   }
 }

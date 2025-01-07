@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Form = ({ initialFormData, formData, setFormData, setFromSelect }) => {
+const Form = ({ initialFormData, formData, setFormData, setIsFromSelect }) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -9,15 +9,26 @@ const Form = ({ initialFormData, formData, setFormData, setFromSelect }) => {
   const clearForm = (e) => {
     e.preventDefault();
     setFormData(initialFormData);
-    setIsDisabled(false);
+    setisPositionSelectDisabled(false);
   };
 
-  const [isDisabled, setIsDisabled] = useState(false);
+  const [isPositionSelectDisabled, setisPositionSelectDisabled] =
+    useState(false);
 
   const handleCustomPosition = (e) => {
-    setFormData({ ...formData, position: "", position_alt: e.target.value });
-    setFromSelect(false);
-    setIsDisabled(true);
+    if (e.target.value === "") {
+      setFormData({ ...formData, position_alt: "" });
+      setIsFromSelect(true);
+      setisPositionSelectDisabled(false);
+    } else {
+      setFormData({
+        ...formData,
+        position: "",
+        position_alt: e.target.value,
+      });
+      setIsFromSelect(false);
+      setisPositionSelectDisabled(true);
+    }
   };
 
   return (
@@ -62,7 +73,7 @@ const Form = ({ initialFormData, formData, setFormData, setFromSelect }) => {
           value={formData.position}
           onChange={handleChange}
           className="form__element"
-          disabled={isDisabled}
+          disabled={isPositionSelectDisabled}
         >
           <option value="Position">Position</option>
           <option value="Software Quality Assurance Engineer">
@@ -81,7 +92,7 @@ const Form = ({ initialFormData, formData, setFormData, setFromSelect }) => {
             name="position_alt"
             value={formData.position_alt}
             onChange={handleCustomPosition}
-            className="input--with-label"
+            className="form__input-in-element"
           />
         </div>
       </div>
@@ -100,14 +111,13 @@ const Form = ({ initialFormData, formData, setFormData, setFromSelect }) => {
       <div className="form__row form__row--withbuttons">
         <button
           type="reset"
-          value="Reset"
           onClick={clearForm}
-          className="form__button--clear"
+          className="form__button form__button--clear"
         >
-          <span className="form__button--text">Clear</span>
+          <span className="form__button-text">Clear</span>
         </button>
-        <button type="submit" value="Submit" className="form__button--submit">
-          <span className="form__button--text">Save</span>
+        <button type="submit" className="form__button form__button--submit">
+          <span className="form__button-text">Save</span>
         </button>
       </div>
     </form>

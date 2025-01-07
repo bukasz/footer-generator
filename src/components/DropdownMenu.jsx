@@ -21,9 +21,9 @@ export default function DropdownMenu() {
         <p className="dropdown-menu__menu-text">MENU</p>
       </button>
       <div className="dropdown-menu__content" style={dynamicOpen}>
-        <a href="#">Sign out</a>
-        <a href="#">Refresh token</a>
-        <a href="#">Revoke Gmail Access</a>
+        <button className="dropdown-menu__link">Sign out</button>
+        <button className="dropdown-menu__link">Refresh token</button>
+        <button className="dropdown-menu__link">Revoke Gmail Access</button>
       </div>
     </div>
   );
