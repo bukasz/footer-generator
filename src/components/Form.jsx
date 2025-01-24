@@ -9,17 +9,17 @@ const Form = ({ initialFormData, formData, setFormData, setIsFromSelect }) => {
   const clearForm = (e) => {
     e.preventDefault();
     setFormData(initialFormData);
-    setisPositionSelectDisabled(false);
+    setIsPositionSelectDisabled(false);
   };
 
-  const [isPositionSelectDisabled, setisPositionSelectDisabled] =
+  const [isPositionSelectDisabled, setIsPositionSelectDisabled] =
     useState(false);
 
   const handleCustomPosition = (e) => {
     if (e.target.value === "") {
       setFormData({ ...formData, position_alt: "" });
       setIsFromSelect(true);
-      setisPositionSelectDisabled(false);
+      setIsPositionSelectDisabled(false);
     } else {
       setFormData({
         ...formData,
@@ -27,7 +27,7 @@ const Form = ({ initialFormData, formData, setFormData, setIsFromSelect }) => {
         position_alt: e.target.value,
       });
       setIsFromSelect(false);
-      setisPositionSelectDisabled(true);
+      setIsPositionSelectDisabled(true);
     }
   };
 
@@ -35,13 +35,13 @@ const Form = ({ initialFormData, formData, setFormData, setIsFromSelect }) => {
     <form className="form">
       <div className="form__row">
         <input
+          className="form__element"
           type="text"
           id="name"
           name="name"
           value={formData.name}
           onChange={handleChange}
           placeholder="Name"
-          className="form__element"
           required
         />
         <input
@@ -84,7 +84,7 @@ const Form = ({ initialFormData, formData, setFormData, setIsFromSelect }) => {
           <option value="Leading Web Developer">Leading Web Developer</option>
         </select>
 
-        <div className="form__element--with-label">
+        <div className="form__element-with-label">
           <label htmlFor="position_alt">or</label>
           <input
             type="text"

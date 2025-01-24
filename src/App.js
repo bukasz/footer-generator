@@ -1,6 +1,6 @@
 import React from "react";
-import FooterGenerator from "./FooterGenerator";
-import "./../styles/components/App.scss";
+import FooterGenerator from "./components/FooterGenerator";
+import "./styles/App.scss";
 
 function App() {
   return (
