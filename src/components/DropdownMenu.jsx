@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 
 export default function DropdownMenu() {
   const [isOpen, setIsOpen] = useState(false);
@@ -9,6 +9,16 @@ export default function DropdownMenu() {
   const dynamicOpen = isOpen
     ? { visibility: "visible", opacity: "1" }
     : { visibility: "hidden", opacity: "0" };
+
+  const closeMenu = useRef(null);
+
+  const closeOpenMenu = (e) => {
+    if (isOpen && !closeMenu.current?.contains(e.target)) {
+      setIsOpen(false);
+    }
+  };
+
+  document.addEventListener("mousedown", closeOpenMenu);
 
   return (
     <div className="dropdown-menu">

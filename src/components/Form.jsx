@@ -57,22 +57,22 @@ const Form = ({ initialFormData, formData, setFormData, setIsFromSelect }) => {
       </div>
       <div className="form__row">
         <input
+          className="form__element"
           type="number"
           id="telephone"
           name="telephone"
           value={formData.telephone}
           onChange={handleChange}
           placeholder="Telephone"
-          className="form__element"
         />
       </div>
       <div className="form__row">
         <select
+          className="form__element"
           id="position"
           name="position"
           value={formData.position}
           onChange={handleChange}
-          className="form__element"
           disabled={isPositionSelectDisabled}
         >
           <option value="Position">Position</option>
@@ -87,32 +87,32 @@ const Form = ({ initialFormData, formData, setFormData, setIsFromSelect }) => {
         <div className="form__element-with-label">
           <label htmlFor="position_alt">or</label>
           <input
+            className="form__input-in-element"
             type="text"
             id="position_alt"
             name="position_alt"
             value={formData.position_alt}
             onChange={handleCustomPosition}
-            className="form__input-in-element"
           />
         </div>
       </div>
 
       <div className="form__row">
         <textarea
+          className="form__textarea"
           id="more"
           name="more"
           value={formData.more}
           onChange={handleChange}
           rows="5"
           placeholder={"Something more about you?"}
-          className="form__textarea"
         ></textarea>
       </div>
       <div className="form__row form__row--withbuttons">
         <button
+          className="form__button form__button--clear"
           type="reset"
           onClick={clearForm}
-          className="form__button form__button--clear"
         >
           <span className="form__button-text">Clear</span>
         </button>
