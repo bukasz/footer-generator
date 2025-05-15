@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Header from "./Header";
 import Form from "./Form";
 import FooterPreview from "./FooterPreview";
@@ -11,6 +11,20 @@ const FooterGenerator = () => {
     position_alt: "",
     telephone: "",
     more: "",
+  };
+
+  const [auth, setAuth] = useState({
+    isAuthenticated: false,
+    userEmail: "",
+    loading: false,
+    error: null,
+  });
+
+  const handleAuthChange = (authData) => {
+    setAuth((prevAuth) => ({
+      ...prevAuth,
+      ...authData,
+    }));
   };
 
   const [isFromSelect, setIsFromSelect] = useState(true);

@@ -1,4 +1,4 @@
-@use "./../base";
+@use "@/styles/base";
 
 .title {
   &__main {
@@ -9,7 +9,7 @@
     position: relative;
     top: -1.5rem;
     left: -1.5rem;
-    background-image: url("./../../svgs/brush.svg");
+    background-image: url("@/images/brush.svg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function FooterPreview({name, surname, position, telephone, more}) {
     return (
       <div>
