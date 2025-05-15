@@ -1,4 +1,4 @@
-@use "@/styles/base";
+@use "@/styles/base" as *;
 
 %form-element {
   box-sizing: border-box;
@@ -6,14 +6,14 @@
   height: 1.5rem;
   background: transparent;
   border: none;
-  border-bottom: 1px solid base.$greylight;
-  font-family: base.$main-font;
+  border-bottom: 1px solid $greylight;
+  font-family: $main-font;
   letter-spacing: 0;
-  color: base.$grey;
+  color: $grey;
 
   &:focus {
     outline-width: 0;
-    border-bottom: 1px solid base.$grey;
+    border-bottom: 1px solid $grey;
   }
 }
 
@@ -52,7 +52,7 @@
     }
 
     &::placeholder {
-      color: base.$grey;
+      color: $grey;
       font-size: 13px;
     }
   }
@@ -60,7 +60,7 @@
   &__element-with-label {
     display: flex;
     align-items: flex-end;
-    color: base.$grey;
+    color: $grey;
     font-size: 13px;
     width: 100%;
     margin: 0.5rem 0rem;
@@ -85,16 +85,16 @@
     width: 100%;
     padding: 0.5rem;
     background: transparent;
-    border: 1px solid base.$greylight;
-    font-family: base.$main-font;
+    border: 1px solid $greylight;
+    font-family: $main-font;
     letter-spacing: 0;
-    color: base.$grey;
+    color: $grey;
     margin: 1rem 0 1rem 0;
     resize: none;
 
     &:focus {
       outline-width: 0;
-      border: 1px solid base.$grey;
+      border: 1px solid $grey;
     }
 
     @media (min-width: 769px) {
@@ -104,47 +104,16 @@
   }
 
   &__button {
-    box-sizing: border-box;
-    display: inline-flex;
-    align-items: center;
-    vertical-align: middle;
-    padding: 0px;
-    border: none;
-    text-decoration: none;
-    user-select: none;
-    font-size: 0px;
-    outline: none;
-    border-radius: 0.25rem;
     margin: 0.25rem 0rem 0.25rem 0.25rem;
-    cursor: pointer;
-    transition: transform 200ms ease;
 
-    &:hover {
-      transform: scale(1.05);
-    }
-
-    &--submit {
-      background-color: base.$creativered;
-
+    &--primary {
       @media (min-width: 769px) {
         margin-right: 0.5rem;
       }
     }
-
-    &--clear {
-      background: base.$grey;
-    }
   }
 
   &__button-text {
-    font-family: base.$main-font;
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: 0.8375rem;
-    letter-spacing: 0.1em;
-    white-space: nowrap;
-    color: base.$white;
-    padding: 0.675rem 0.9375rem 0.675rem 1.25rem;
   }
 }
 
@@ -153,7 +122,6 @@ input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
   -webkit-background-clip: text;
-  -webkit-text-fill-color: base.$grey;
-  transition: base.$greylight 5000s ease-in-out 0s;
-  box-shadow: inset 0 0 20px 20px base.$background;
+  -webkit-text-fill-color: $grey;
+  box-shadow: inset 0 0 20px 20px $background;
 }

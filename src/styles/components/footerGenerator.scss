@@ -1,14 +1,8 @@
-@use "@/styles/base";
+@use "@/styles/base" as *;
 
 .footer-generator {
   padding: 1rem;
-  background-color: base.$background;
-  width: calc(100% - 4rem);
-  margin: 2rem 1rem;
-
-  @media (min-width: 481px) {
-    width: 70%;
-    max-width: 700px;
-    margin: 2rem;
-  }
+  background-color: $background;
+  max-width: 700px;
+  margin: 2rem 0;
 }

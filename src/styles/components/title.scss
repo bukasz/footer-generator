@@ -1,9 +1,9 @@
-@use "@/styles/base";
+@use "@/styles/base" as *;
 
 .title {
   &__main {
     font-weight: 700;
-    color: base.$white;
+    color: $white;
     margin: 0;
     padding: 0.2rem 0.7rem;
     position: relative;
@@ -24,7 +24,7 @@
 
   &__subtitle {
     font-weight: 400;
-    color: base.$grey;
+    color: $grey;
     margin: 0;
   }
 }

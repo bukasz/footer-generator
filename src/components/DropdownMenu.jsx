@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 
-export default function DropdownMenu() {
+export default function DropdownMenu({ handleAuth, handleSignout }) {
   const [isOpen, setIsOpen] = useState(false);
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -31,9 +31,15 @@ export default function DropdownMenu() {
         <p className="dropdown-menu__menu-text">MENU</p>
       </button>
       <div className="dropdown-menu__content" style={dynamicOpen}>
-        <button className="dropdown-menu__link">Sign out</button>
-        <button className="dropdown-menu__link">Refresh token</button>
-        <button className="dropdown-menu__link">Revoke Gmail Access</button>
+        <button className="dropdown-menu__link" onClick={handleSignout}>
+          Sign out
+        </button>
+        <button className="dropdown-menu__link" onClick={handleAuth}>
+          Refresh token
+        </button>
+        <button className="dropdown-menu__link" onClick={handleSignout}>
+          Revoke Gmail Access (TODO)
+        </button>
       </div>
     </div>
   );

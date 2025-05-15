@@ -1,4 +1,4 @@
-@use "@/styles/base";
+@use "@/styles/base" as *;
 
 .dropdown-menu {
   position: relative;
@@ -10,20 +10,20 @@
     display: inline-flex;
     flex-direction: column;
     align-items: center;
-    color: base.$white;
+    color: $white;
     outline: none;
     border: none;
-    background-color: base.$blacktransparent;
+    background-color: $blacktransparent;
     cursor: pointer;
   }
 
   &__menu-text {
-    font-family: base.$main-font;
+    font-family: $main-font;
     font-weight: bold;
     letter-spacing: 0.175rem;
     font-size: 0.9375rem;
     opacity: 1;
-    color: base.$white;
+    color: $white;
     margin: 0;
   }
 
@@ -54,27 +54,27 @@
     justify-content: flex-end;
     flex-wrap: nowrap;
     min-width: 10rem;
-    background-color: base.$blacktransparent;
+    background-color: $blacktransparent;
     padding: 1rem;
     right: 0;
     border-radius: 0.25rem 0 0.25rem 0.25rem;
     display: flex;
-    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
   }
 
   &__link {
-    color: base.$white;
+    color: $white;
     background-color: transparent;
     border: none;
     padding: 0.3rem;
     text-decoration: none;
     text-align: right;
-    transition: all 300ms ease-in-out;
+    transition: all 0.3s ease-in-out;
     cursor: pointer;
 
     &:hover {
       transform: scale(1.02);
-      color: base.$greylight;
+      color: $greylight;
     }
   }
 }
@@ -84,6 +84,6 @@
   height: 0.15rem;
   left: 0;
   right: 0;
-  background: base.$white;
+  background: $white;
   transition: top 0.2s;
 }

@@ -1,6 +1,12 @@
 import { useState } from "react";
 
-const Form = ({ initialFormData, formData, setFormData, setIsFromSelect }) => {
+const Form = ({
+  initialFormData,
+  formData,
+  setFormData,
+  setIsFromSelect,
+  setSignature,
+}) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -31,8 +37,13 @@ const Form = ({ initialFormData, formData, setFormData, setIsFromSelect }) => {
     }
   };
 
+  const handleSetSignature = (e) => {
+    e.preventDefault();
+    setSignature();
+  };
+
   return (
-    <form className="form">
+    <form className="form" onSubmit={handleSetSignature}>
       <div className="form__row">
         <input
           className="form__element"
@@ -58,7 +69,6 @@ const Form = ({ initialFormData, formData, setFormData, setIsFromSelect }) => {
       <div className="form__row">
         <input
           className="form__element"
-          type="number"
           id="telephone"
           name="telephone"
           value={formData.telephone}
@@ -110,14 +120,14 @@ const Form = ({ initialFormData, formData, setFormData, setIsFromSelect }) => {
       </div>
       <div className="form__row form__row--withbuttons">
         <button
-          className="form__button form__button--clear"
+          className="form__button | button button--secondary"
           type="reset"
           onClick={clearForm}
         >
-          <span className="form__button-text">Clear</span>
+          Clear
         </button>
-        <button type="submit" className="form__button form__button--submit">
-          <span className="form__button-text">Save</span>
+        <button type="submit" className="form__button form__button--primary | button button--primary">
+          Save
         </button>
       </div>
     </form>
