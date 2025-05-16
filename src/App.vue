@@ -35,7 +35,7 @@ const userId = "me";
 
 onMounted(async () => {
   try {
-    await googleApisService.loadGoogleApis();
+    await googleApisService().loadGoogleApis();
   } catch (error) {
     errorMsg.value = error;
   } finally {

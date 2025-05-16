@@ -26,6 +26,7 @@ class GoogleApis {
       "https://www.googleapis.com/auth/gmail.settings.basic",
       "https://www.googleapis.com/auth/gmail.settings.sharing",
     ];
+    this.scriptLoadingPromise = null;
   }
 
   loadGapi() {
@@ -79,19 +80,33 @@ class GoogleApis {
   }
 
   loadGoogleApis() {
-    return new Promise(async (resolve, reject) => {
-      if (window.gisInited && window.gapiInited && window.tokenClient) {
-        return resolve();
-      }
+    if (!this.scriptLoadingPromise) {
+      this.scriptLoadingPromise = new Promise(async (resolve, reject) => {
+        if (window.gisInited && window.gapiInited && window.tokenClient) {
+          return resolve();
+        }
 
-      try {
-        await Promise.all([this.loadGapi(), this.loadGis()]);
-        resolve();
-      } catch (error) {
-        reject(error);
-      }
-    });
+        try {
+          await Promise.all([this.loadGapi(), this.loadGis()]);
+          resolve();
+        } catch (error) {
+          reject(error);
+        }
+      });
+    }
+
+    return this.scriptLoadingPromise;
   }
 }
 
-export default new GoogleApis();
+let service;
+
+function googleApisService() {
+  if (!service) {
+    service = new GoogleApis();
+  }
+
+  return service;
+}
+
+export default googleApisService;
