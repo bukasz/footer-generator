@@ -147,6 +147,7 @@ const FooterGenerator = () => {
         surname={formData.surname}
         telephone={formData.telephone}
         position={isFromSelect ? formData.position : formData.position_alt}
+        emailAddress={emailAddress}
         more={formData.more}
       />
       {isLoading ? (

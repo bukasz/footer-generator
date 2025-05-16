@@ -4,36 +4,38 @@ const FooterPreview = forwardRef(
   ({ name, surname, position, telephone, emailAddress, more }, ref) => {
     return (
       <div ref={ref} style={{ fontFamily: "Arial, Helvetica, sans-serif" }}>
-        <p style={{ fontSize: "14px" }}>
+        <p style={{ margin: "15px 0", fontSize: "14px" }}>
           Serdecznie pozdrawiam / Best regards / mit freundlichen Grüßen,
         </p>
-        <div
-          style={{
-            height: "40px",
-            fontSize: "13px",
-            lineHeight: "15px",
-            marginTop: "30px",
-          }}
-        >
-          <img
-            src="https://lh3.googleusercontent.com/d/1oQ_11O2zFB0-PdFATqY69KkRkOXYtl0W"
-            width="40"
-            height="40"
-            style={{ float: "left", marginRight: "5px" }}
-          />
-          <p
+        {(name || surname || position) && (
+          <div
             style={{
-              margin: "0",
-              paddingTop: "5px",
-              fontWeight: "bold",
-              color: "#000",
+              height: "40px",
+              fontSize: "13px",
+              lineHeight: "15px",
+              marginTop: "30px",
             }}
           >
-            {name} {surname}
-            <br />
-          </p>
-          <p style={{ margin: "0", color: "#8c8c8c" }}>{position}</p>
-        </div>
+            <img
+              src="https://lh3.googleusercontent.com/d/1oQ_11O2zFB0-PdFATqY69KkRkOXYtl0W"
+              width="40"
+              height="40"
+              style={{ float: "left", marginRight: "5px" }}
+            />
+            <p
+              style={{
+                margin: "0",
+                paddingTop: "5px",
+                fontWeight: "bold",
+                color: "#000",
+              }}
+            >
+              {name} {surname}
+              <br />
+            </p>
+            <p style={{ margin: "0", color: "#8c8c8c" }}>{position}</p>
+          </div>
+        )}
 
         {telephone && (
           <div
@@ -66,34 +68,42 @@ const FooterPreview = forwardRef(
           </div>
         )}
 
-        <div
-          style={{
-            height: "40px",
-            fontSize: "13px",
-            lineHeight: "15px",
-            marginTop: "3px",
-          }}
-        >
-          <img
-            src="https://lh3.googleusercontent.com/d/1ahkKJ1uF-YcCtsWWZOSIsJRmAS7b__Us"
-            width="40"
-            height="40"
-            style={{ float: "left", marginRight: "5px" }}
-          />
-          <a
+        {emailAddress && (
+          <div
             style={{
-              display: "block",
-              margin: "0",
-              paddingTop: "12.5px",
-              textDecoration: "none",
-              fontWeight: "bold",
-              color: "#000",
+              height: "40px",
+              fontSize: "13px",
+              lineHeight: "15px",
+              marginTop: "3px",
             }}
-            href={`mailto:${emailAddress}`}
           >
-            {emailAddress}
-          </a>
-        </div>
+            <img
+              src="https://lh3.googleusercontent.com/d/1ahkKJ1uF-YcCtsWWZOSIsJRmAS7b__Us"
+              width="40"
+              height="40"
+              style={{ float: "left", marginRight: "5px" }}
+            />
+            <a
+              style={{
+                display: "block",
+                margin: "0",
+                paddingTop: "12.5px",
+                textDecoration: "none",
+                fontWeight: "bold",
+                color: "#000",
+              }}
+              href={`mailto:${emailAddress}`}
+            >
+              {emailAddress}
+            </a>
+          </div>
+        )}
+
+        {more && (
+        <p style={{ margin: '20px 0 15px',fontSize: "13px", color: "#8c8c8c" }}>
+          {more}
+        </p>
+        )}
 
         <div style={{ margin: "4px 0 0", overflow: "hidden" }}>
           <img
