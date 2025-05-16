@@ -13,8 +13,6 @@ const FooterGenerator = () => {
   const [successMsg, setSuccessMsg] = useState(null);
   const [emailAddress, setEmailAddress] = useState(null);
 
-  const userId = "me";
-
   useEffect(() => {
     const loadApis = async () => {
       try {
@@ -38,7 +36,6 @@ const FooterGenerator = () => {
 
   const handleAuth = () => {
     window.tokenClient.callback = (resp) => {
-      console.log(resp);
       if (resp.error !== undefined) {
         setErrorMsg(resp.error);
         throw resp;
@@ -55,7 +52,7 @@ const FooterGenerator = () => {
     });
   };
 
-  const handleSignout = () => {
+  const revokeAccess = () => {
     const token = window.gapi.client.getToken();
     if (token !== null) {
       window.google.accounts.oauth2.revoke(token.access_token);
@@ -69,12 +66,34 @@ const FooterGenerator = () => {
     setIsLoading(true);
 
     try {
-      const profile = await window.gapi.client.gmail.users.getProfile({
-        userId,
+      const response = await window.gapi.client.people.people.get({
+        resourceName: "people/me",
+        personFields: "emailAddresses,names",
       });
-      setEmailAddress(profile.result.emailAddress);
+
+      const { emailAddresses, names } = response.result;
+
+      if (emailAddresses?.length) {
+        setEmailAddress(emailAddresses[0].value);
+      } else {
+        throw new Error("No email addresses found for this account.");
+      }
+
+      if (names?.length) {
+        const { givenName: name = "", familyName = "" } = names[0];
+        const surname = familyName
+          .toLowerCase()
+          .replace(/(?:^|\s)\S/g, (a) => a.toUpperCase());
+
+        setFormData((prevFormData) => ({
+          ...prevFormData,
+          name,
+          surname,
+        }));
+      }
     } catch (error) {
       setErrorMsg(error.message || "Failed to get email");
+      revokeAccess();
     } finally {
       setIsLoading(false);
     }
@@ -89,7 +108,7 @@ const FooterGenerator = () => {
       if (!emailAddress) throw new Error("Email address is missing");
 
       await window.gapi.client.gmail.users.settings.sendAs.update({
-        userId,
+        userId: "me",
         sendAsEmail: emailAddress,
         resource: {
           signature: footerRef.current.outerHTML,
@@ -121,7 +140,7 @@ const FooterGenerator = () => {
   return (
     <>
       <div className="footer-generator">
-        <Header handleAuth={handleAuth} handleSignout={handleSignout} />
+        <Header handleAuth={handleAuth} revokeAccess={revokeAccess} />
         <Form
           initialFormData={initialFormData}
           formData={formData}

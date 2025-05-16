@@ -1,11 +1,11 @@
 import Title from "./Title";
 import DropdownMenu from "./DropdownMenu";
 
-export default function Header({ handleAuth, handleSignout }) {
+export default function Header({ handleAuth, revokeAccess }) {
   return (
     <header className="header">
       <Title />
-      <DropdownMenu handleAuth={handleAuth} handleSignout={handleSignout} />
+      <DropdownMenu handleAuth={handleAuth} revokeAccess={revokeAccess} />
     </header>
   );
 }

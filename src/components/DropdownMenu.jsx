@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 
-export default function DropdownMenu({ handleAuth, handleSignout }) {
+export default function DropdownMenu({ handleAuth, revokeAccess }) {
   const [isOpen, setIsOpen] = useState(false);
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -53,7 +53,7 @@ export default function DropdownMenu({ handleAuth, handleSignout }) {
         <button
           className="dropdown-menu__link"
           onClick={() => {
-            handleSignout();
+            revokeAccess();
             setIsOpen(false);
           }}
         >

@@ -20,9 +20,11 @@ class GoogleApis {
     this.API_KEY = "AIzaSyCABkfhbootKsvp0v-9IGM30ycXkwbfBDY";
     this.DISCOVERY_DOCS = [
       "https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest",
+      "https://www.googleapis.com/discovery/v1/apis/people/v1/rest",
     ];
     this.SCOPES = [
-      "https://www.googleapis.com/auth/gmail.readonly",
+      "https://www.googleapis.com/auth/userinfo.email",
+      "https://www.googleapis.com/auth/userinfo.profile",
       "https://www.googleapis.com/auth/gmail.settings.basic",
     ];
     this.scriptLoadingPromise = null;
