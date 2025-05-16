@@ -5,4 +5,17 @@
   background-color: $background;
   max-width: 700px;
   margin: 2rem 0;
+
+  &__message {
+    font-size: 13ox;
+    margin: 2rem 0;
+
+    &--error {
+      color: $creativered;
+    }
+
+    &--success {
+      color: green;
+    }
+  }
 }

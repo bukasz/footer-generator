@@ -37,11 +37,10 @@ const FooterGenerator = () => {
   }, [isLoading]);
 
   const handleAuth = () => {
-    setIsAuthorized(true);
-
     window.tokenClient.callback = (resp) => {
       console.log(resp);
       if (resp.error !== undefined) {
+        setErrorMsg(resp.error);
         throw resp;
       }
       setIsAuthorized(true);
@@ -84,7 +83,6 @@ const FooterGenerator = () => {
   const setSignature = async () => {
     if (!footerRef.current?.outerHTML) throw new Error("Footer is empty");
 
-    console.log(footerRef.current?.outerHTML);
     setIsLoading(true);
 
     try {
@@ -132,6 +130,17 @@ const FooterGenerator = () => {
           setSignature={setSignature}
         />
       </div>
+
+      {errorMsg && (
+        <p className="footer-generator__message footer-generator__message--error">
+          {errorMsg}
+        </p>
+      )}
+      {successMsg && (
+        <p className="footer-generator__message footer-generator__message--success">
+          {successMsg}
+        </p>
+      )}
       <FooterPreview
         ref={footerRef}
         name={formData.name}

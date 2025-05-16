@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 export default function DropdownMenu({ handleAuth, handleSignout }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,17 +12,26 @@ export default function DropdownMenu({ handleAuth, handleSignout }) {
 
   const closeMenu = useRef(null);
 
-  // TODO: improve outside click detection
   const closeOpenMenu = (e) => {
     if (isOpen && !closeMenu.current?.contains(e.target)) {
       setIsOpen(false);
     }
   };
 
-  document.addEventListener("mousedown", closeOpenMenu);
+  useEffect(() => {
+    // Only add the listener when the menu is open
+    if (isOpen) {
+      document.addEventListener("mousedown", closeOpenMenu);
+
+      // Clean up when component unmounts or when menu closes
+      return () => {
+        document.removeEventListener("mousedown", closeOpenMenu);
+      };
+    }
+  }, [isOpen]);
 
   return (
-    <div className="dropdown-menu">
+    <div className="dropdown-menu" ref={closeMenu}>
       <button className="dropdown-menu__button" onClick={toggleDropdown}>
         <span className="dropdown-menu__bars-container">
           <span className="dropdown-menu__bars-container--bar1"></span>
@@ -32,10 +41,22 @@ export default function DropdownMenu({ handleAuth, handleSignout }) {
         <p className="dropdown-menu__menu-text">MENU</p>
       </button>
       <div className="dropdown-menu__content" style={dynamicOpen}>
-        <button className="dropdown-menu__link" onClick={handleAuth}>
+        <button
+          className="dropdown-menu__link"
+          onClick={() => {
+            handleAuth();
+            setIsOpen(false);
+          }}
+        >
           Refresh token
         </button>
-        <button className="dropdown-menu__link" onClick={handleSignout}>
+        <button
+          className="dropdown-menu__link"
+          onClick={() => {
+            handleSignout();
+            setIsOpen(false);
+          }}
+        >
           Revoke Gmail Access
         </button>
       </div>
