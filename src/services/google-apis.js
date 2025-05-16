@@ -22,9 +22,7 @@ class GoogleApis {
       "https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest",
     ];
     this.SCOPES = [
-      "https://www.googleapis.com/auth/gmail.readonly",
       "https://www.googleapis.com/auth/gmail.settings.basic",
-      "https://www.googleapis.com/auth/gmail.settings.sharing",
     ];
     this.scriptLoadingPromise = null;
   }
