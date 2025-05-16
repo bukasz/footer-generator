@@ -22,7 +22,7 @@ A React application that allows users to create and set custom email footers for
 1. Clone the repository:
 ```bash
 git clone <repository-url>
-cd gmail-footer-generator
+cd footer-generator
 ```
 
 2. Install dependencies:
@@ -51,10 +51,10 @@ npm run dev
 
 ## Usage
 
-1. Click the "Authorize Gmail Access" button to authenticate with your Google account
+1. Click the "Authorize access to Gmail settings" button to authenticate with your Google account
 2. Fill in your footer details in the form
 3. Preview your footer in real-time
-4. Click "Save Footer" to update your Gmail footer
+4. Click "Save" to update your Gmail footer
 
 ## Development
 

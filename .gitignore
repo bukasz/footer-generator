@@ -9,8 +9,8 @@
 /coverage
 
 # production
-/dist/assets
-/dist/index.html
+# /dist/assets
+# /dist/index.html
 
 # misc
 .DS_Store

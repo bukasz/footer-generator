@@ -1,102 +1,111 @@
-// Replace these with your actual Google API credentials
-const CLIENT_ID = 'YOUR_CLIENT_ID';
-const API_KEY = 'YOUR_API_KEY';
-const DISCOVERY_DOCS = ['https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest'];
-const SCOPES = ['https://www.googleapis.com/auth/gmail.settings.basic'];
-
-let tokenClient;
-let gapiInited = false;
-let gisInited = false;
-
-export const initializeGoogleApis = async () => {
-  const loadGapiScript = () => {
-    const script = document.createElement('script');
-    script.src = 'https://apis.google.com/js/api.js';
-    script.async = true;
-    script.defer = true;
-    script.onload = initializeGapiClient;
-    document.head.appendChild(script);
-  };
-
-  const loadGisScript = () => {
-    const script = document.createElement('script');
-    script.src = 'https://accounts.google.com/gsi/client';
-    script.async = true;
-    script.defer = true;
-    script.onload = initializeGisClient;
-    document.head.appendChild(script);
-  };
-
-  const initializeGapiClient = async () => {
-    await window.gapi.client.init({
-      apiKey: API_KEY,
-      discoveryDocs: DISCOVERY_DOCS,
-    });
-    gapiInited = true;
-  };
-
-  const initializeGisClient = () => {
-    tokenClient = window.google.accounts.oauth2.initTokenClient({
-      client_id: CLIENT_ID,
-      scope: SCOPES.join(' '),
-      callback: '', // defined at request time
-    });
-    gisInited = true;
-  };
-
-  loadGapiScript();
-  loadGisScript();
-};
-
-export const authenticateUser = () => {
+async function loadScript(src) {
   return new Promise((resolve, reject) => {
-    if (!gapiInited || !gisInited) {
-      reject(new Error('Google APIs not initialized'));
-      return;
-    }
+    const script = document.createElement("script");
+    script.setAttribute("src", src);
+    document.body.appendChild(script);
 
-    tokenClient.callback = async (response) => {
-      if (response.error) {
-        reject(response);
-        return;
-      }
+    script.onload = resolve;
+    script.onerror = reject;
+  });
+}
+
+class GoogleApis {
+  constructor() {
+    this.urls = {
+      gapi: "https://apis.google.com/js/api.js",
+      gis: "https://accounts.google.com/gsi/client",
+    };
+    this.CLIENT_ID =
+      "65683795126-dca7sb0aesnhosb2g76k2jtsr6m0ed2j.apps.googleusercontent.com";
+    this.API_KEY = "AIzaSyCABkfhbootKsvp0v-9IGM30ycXkwbfBDY";
+    this.DISCOVERY_DOCS = [
+      "https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest",
+    ];
+    this.SCOPES = [
+      "https://www.googleapis.com/auth/gmail.readonly",
+      "https://www.googleapis.com/auth/gmail.settings.basic",
+    ];
+    this.scriptLoadingPromise = null;
+  }
+
+  loadGapi() {
+    return new Promise(async (resolve, reject) => {
+      if (window.gapi) return resolve();
 
       try {
-        const userProfile = await getUserProfile();
-        resolve(userProfile);
+        await loadScript(this.urls.gapi);
+
+        if (!window.gapi) {
+          throw new Error("Google API not found");
+        }
+
+        window.gapi.load("client", async () => {
+          await gapi.client.init({
+            apiKey: this.API_KEY,
+            discoveryDocs: this.DISCOVERY_DOCS,
+          });
+          window.gapiInited = true;
+          resolve();
+        });
       } catch (error) {
         reject(error);
       }
-    };
-
-    tokenClient.requestAccessToken({ prompt: 'consent' });
-  });
-};
-
-export const getUserProfile = async () => {
-  try {
-    const response = await window.gapi.client.gmail.users.getProfile({
-      userId: 'me',
     });
-    return response.result;
-  } catch (error) {
-    console.error('Error fetching user profile:', error);
-    throw error;
   }
-};
 
-export const updateFooter = async (userEmail, footer) => {
-  try {
-    const response = await window.gapi.client.gmail.users.settings.sendAs.update({
-      userId: 'me',
-      sendAsEmail: userEmail,
-      resource: {
-        footer,
-      },
+  loadGis() {
+    return new Promise(async (resolve, reject) => {
+      if (window.tokenClient) return resolve();
+
+      try {
+        await loadScript(this.urls.gis);
+
+        if (!window.google?.accounts?.oauth2) {
+          throw new Error("Google Identity Services not found");
+        }
+
+        window.tokenClient = await window.google.accounts.oauth2.initTokenClient({
+          client_id: this.CLIENT_ID,
+          scope: this.SCOPES.join(" "),
+          callback: "", // defined later
+        });
+
+        window.gisInited = true;
+        resolve();
+      } catch (error) {
+        reject(error);
+      }
     });
-    return response.result;
-  } catch (error) {
-    console.error('Error updating footer:', error);
-    throw error;
   }
-}; 
+
+  loadGoogleApis() {
+    if (!this.scriptLoadingPromise) {
+      this.scriptLoadingPromise = new Promise(async (resolve, reject) => {
+        if (window.gisInited && window.gapiInited && window.tokenClient) {
+          return resolve();
+        }
+
+        try {
+          await Promise.all([this.loadGapi(), this.loadGis()]);
+          resolve();
+        } catch (error) {
+          reject(error);
+        }
+      });
+    }
+
+    return this.scriptLoadingPromise;
+  }
+}
+
+let service;
+
+function googleApisService() {
+  if (!service) {
+    service = new GoogleApis();
+  }
+
+  return service;
+}
+
+export default googleApisService;

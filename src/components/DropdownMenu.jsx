@@ -12,6 +12,7 @@ export default function DropdownMenu({ handleAuth, handleSignout }) {
 
   const closeMenu = useRef(null);
 
+  // TODO: improve outside click detection
   const closeOpenMenu = (e) => {
     if (isOpen && !closeMenu.current?.contains(e.target)) {
       setIsOpen(false);
@@ -31,14 +32,11 @@ export default function DropdownMenu({ handleAuth, handleSignout }) {
         <p className="dropdown-menu__menu-text">MENU</p>
       </button>
       <div className="dropdown-menu__content" style={dynamicOpen}>
-        <button className="dropdown-menu__link" onClick={handleSignout}>
-          Sign out
-        </button>
         <button className="dropdown-menu__link" onClick={handleAuth}>
           Refresh token
         </button>
         <button className="dropdown-menu__link" onClick={handleSignout}>
-          Revoke Gmail Access (TODO)
+          Revoke Gmail Access
         </button>
       </div>
     </div>

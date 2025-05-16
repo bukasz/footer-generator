@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import googleApisService from "@/services/googleApis";
 import Header from "./Header";
 import Form from "./Form";
 import FooterPreview from "./FooterPreview";
@@ -17,7 +18,7 @@ const FooterGenerator = () => {
   useEffect(() => {
     const loadApis = async () => {
       try {
-        await googleApisService.loadGoogleApis();
+        await googleApisService().loadGoogleApis();
       } catch (error) {
         setErrorMsg(error.message || "An error occurred");
       } finally {
@@ -38,14 +39,14 @@ const FooterGenerator = () => {
   const handleAuth = () => {
     setIsAuthorized(true);
 
-    // window.tokenClient.callback = (resp) => {
-    //   console.log(resp);
-    //   if (resp.error !== undefined) {
-    //     throw resp;
-    //   }
-    //   setIsAuthorized(true);
-    //   getUserEmail();
-    // };
+    window.tokenClient.callback = (resp) => {
+      console.log(resp);
+      if (resp.error !== undefined) {
+        throw resp;
+      }
+      setIsAuthorized(true);
+      getUserEmail();
+    };
 
     const isTokenMissing = window.gapi.client.getToken() === null;
 
