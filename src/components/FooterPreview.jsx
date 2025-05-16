@@ -24,8 +24,8 @@ const FooterPreview = forwardRef(
             />
             <p
               style={{
-                margin: "0",
-                paddingTop: "5px",
+                display: "inline-block",
+                margin: "5px 0 0",
                 fontWeight: "bold",
                 color: "#000",
               }}
@@ -54,9 +54,8 @@ const FooterPreview = forwardRef(
             />
             <a
               style={{
-                display: "block",
-                margin: "0",
-                paddingTop: "12.5px",
+                display: "inline-block",
+                margin: "12.5px 0 0",
                 textDecoration: "none",
                 fontWeight: "bold",
                 color: "#000",
@@ -85,9 +84,8 @@ const FooterPreview = forwardRef(
             />
             <a
               style={{
-                display: "block",
-                margin: "0",
-                paddingTop: "12.5px",
+                display: "inline-block",
+                margin: "12.5px 0 0",
                 textDecoration: "none",
                 fontWeight: "bold",
                 color: "#000",
@@ -100,9 +98,15 @@ const FooterPreview = forwardRef(
         )}
 
         {more && (
-        <p style={{ margin: '20px 0 15px',fontSize: "13px", color: "#8c8c8c" }}>
-          {more}
-        </p>
+          <p
+            style={{
+              margin: "20px 0 15px",
+              fontSize: "13px",
+              color: "#8c8c8c",
+            }}
+          >
+            {more}
+          </p>
         )}
 
         <div style={{ margin: "4px 0 0", overflow: "hidden" }}>
@@ -147,9 +151,9 @@ const FooterPreview = forwardRef(
             </p>
             <a
               style={{
-                display: "block",
+                display: "inline-block",
                 margin: "0",
-                padding: "20px 0 20px 25px",
+                padding: "20px 0 0 25px",
                 color: "#fff",
                 fontSize: "12px",
                 lineHeight: "15px",
@@ -158,10 +162,64 @@ const FooterPreview = forwardRef(
             >
               creativestyle.pl
             </a>
+            <div
+              style={{
+                padding: "20px 0 0 25px",
+                fontSize: "0",
+              }}
+            >
+              <a
+                style={{
+                  display: "inline-block",
+                }}
+                href="https://www.linkedin.com/company/creativestyle-polska"
+              >
+                <img
+                  src="https://lh3.googleusercontent.com/d/1Axr1Kx5ATwS5F6gaU2LzMrKZuCN7MrVg"
+                  width="30"
+                  height="30"
+                  style={{
+                    display: "block",
+                  }}
+                />
+              </a>
+              <a
+                style={{
+                  display: "inline-block",
+                }}
+                href="https://www.facebook.com/Creativestyle.Poland/"
+              >
+                <img
+                  src="https://lh3.googleusercontent.com/d/1euWWC_NBhT4O9vh3iJcbO9tfw4Yirmsf"
+                  width="30"
+                  height="30"
+                  style={{
+                    display: "block",
+                    marginLeft: "10px",
+                  }}
+                />
+              </a>
+              <a
+                style={{
+                  display: "inline-block",
+                  marginLeft: "10px",
+                }}
+                href="https://www.instagram.com/creativestyle_agency/"
+              >
+                <img
+                  src="https://lh3.googleusercontent.com/d/1vT8Uy9SLZ0Jo2mVG_NlWMDrs_pnB0b7J"
+                  width="30"
+                  height="30"
+                  style={{
+                    display: "block",
+                  }}
+                />
+              </a>
+            </div>
             <p
               style={{
                 margin: "0",
-                padding: "0 0 25px 25px",
+                padding: "20px 0 25px 25px",
                 fontSize: "12px",
                 lineHeight: "15px",
               }}
