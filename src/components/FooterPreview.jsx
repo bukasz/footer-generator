@@ -176,8 +176,8 @@ const FooterPreview = forwardRef(
               >
                 <img
                   src="https://lh3.googleusercontent.com/d/1Axr1Kx5ATwS5F6gaU2LzMrKZuCN7MrVg"
-                  width="30"
-                  height="30"
+                  width="20"
+                  height="20"
                   style={{
                     display: "block",
                   }}
@@ -186,16 +186,16 @@ const FooterPreview = forwardRef(
               <a
                 style={{
                   display: "inline-block",
+                    marginLeft: "10px",
                 }}
                 href="https://www.facebook.com/Creativestyle.Poland/"
               >
                 <img
                   src="https://lh3.googleusercontent.com/d/1euWWC_NBhT4O9vh3iJcbO9tfw4Yirmsf"
-                  width="30"
-                  height="30"
+                  width="20"
+                  height="20"
                   style={{
                     display: "block",
-                    marginLeft: "10px",
                   }}
                 />
               </a>
@@ -208,8 +208,8 @@ const FooterPreview = forwardRef(
               >
                 <img
                   src="https://lh3.googleusercontent.com/d/1vT8Uy9SLZ0Jo2mVG_NlWMDrs_pnB0b7J"
-                  width="30"
-                  height="30"
+                  width="20"
+                  height="20"
                   style={{
                     display: "block",
                   }}

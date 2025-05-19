@@ -4,11 +4,12 @@ import Header from "./Header";
 import Form from "./Form";
 import FooterPreview from "./FooterPreview";
 import Loader from "./Loader";
-import AuthorizeButton from "./AuthorizeButton";
+import AuthorizeModal from "./AuthorizeModal";
 
 const FooterGenerator = () => {
   const [isAuthorized, setIsAuthorized] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [authErrorMsg, setAuthErrorMsg] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
   const [successMsg, setSuccessMsg] = useState(null);
   const [emailAddress, setEmailAddress] = useState(null);
@@ -18,7 +19,7 @@ const FooterGenerator = () => {
       try {
         await googleApisService().loadGoogleApis();
       } catch (error) {
-        setErrorMsg(error.message || "An error occurred");
+        setAuthErrorMsg(error.message || "An error occurred while loading Google APIs");
       } finally {
         setIsLoading(false);
       }
@@ -35,10 +36,22 @@ const FooterGenerator = () => {
   }, [isLoading]);
 
   const handleAuth = () => {
+    setAuthErrorMsg(null);
+
     window.tokenClient.callback = (resp) => {
       if (resp.error !== undefined) {
-        setErrorMsg(resp.error);
-        throw resp;
+        setAuthErrorMsg(resp.error);
+        return;
+      }
+
+      const hasGmailSettingsScope = window.gapi.client
+        .getToken()
+        .scope.includes("https://www.googleapis.com/auth/gmail.settings.basic");
+
+      if (!hasGmailSettingsScope) {
+        setAuthErrorMsg("Missing the permission to edit Gmail settings");
+        revokeAccess();
+        return;
       }
       setIsAuthorized(true);
       getUserEmail();
@@ -92,7 +105,7 @@ const FooterGenerator = () => {
         }));
       }
     } catch (error) {
-      setErrorMsg(error.message || "Failed to get email");
+      setAuthErrorMsg(error.message || "Failed to get email");
       revokeAccess();
     } finally {
       setIsLoading(false);
@@ -172,7 +185,9 @@ const FooterGenerator = () => {
       {isLoading ? (
         <Loader />
       ) : (
-        !isAuthorized && <AuthorizeButton handleAuth={handleAuth} />
+        !isAuthorized && (
+          <AuthorizeModal handleAuth={handleAuth} authErrorMsg={authErrorMsg} />
+        )
       )}
     </>
   );

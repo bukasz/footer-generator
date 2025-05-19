@@ -18,7 +18,6 @@
   text-transform: uppercase;
   font-size: 0.8375rem;
   letter-spacing: 0.1em;
-  white-space: nowrap;
   color: $white;
   padding: 0.675rem 1.25rem;
 
@@ -28,10 +27,6 @@
 
   &--primary {
     background-color: $creativered;
-
-    @media (min-width: 769px) {
-      margin-right: 0.5rem;
-    }
   }
 
   &--secondary {
